@@ -18,12 +18,12 @@ async function processUserUpload(file, fileName) {
     // Get the massive raw RGBA array
     const rawImageData = ctx.getImageData(0, 0, width, height).data;
 
-    console.log("Passing raw pixels to the UPF Engine...");
+
 
     // 4. EXECUTE BARE-METAL COMPRESSION (The Wasm Call)
     const upfBinary = encode_image_locally(rawImageData, width, height);
 
-    console.log(`Compression complete. New size: ${(upfBinary.length / 1024).toFixed(1)} KB`);
+
 
     // 5. Decode and Trigger the Trojan Horse Export!
     const finalName = fileName || file.name || 'image.jpg';

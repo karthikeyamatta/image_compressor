@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Privacy | UPF Quantum Compressor</title>
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' blob: data:; connect-src 'self' blob:;">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070a;
+            --accent: #00f2ff;
+            --accent-low: rgba(0, 242, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00f2ff 0%, #7000ff 100%);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-secondary: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 100px 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .privacy-box {
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .privacy-box h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html" style="color: var(--accent)">About & Privacy</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>About UPF</h1>
+            <p>Next-generation Image Compression powered by Rust and WebAssembly.</p>
+        </header>
+
+        <div class="section">
+            <h2>The Technology</h2>
+            <p>
+                Universal Pixel Format (UPF) is an experimental compression architecture designed for maximum
+                performance
+                and hardware compatibility. UPF achieves
+                significant reductions in file size while maintaining high visual fidelity.
+            </p>
+            <p>
+                Unlike traditional formats that rely on complex, heavy-weight decoders, UPF is designed to be lean,
+                fast, and "bare-metal" ready.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Privacy & Security</h2>
+            <div class="privacy-box">
+                <h3>100% Client-Side Processing</h3>
+                <p>
+                    Your privacy is our top priority. We believe that your data should never leave your machine unless
+                    absolutely necessary.
+                </p>
+            </div>
+            <p>
+                The UPF Quantum Compressor runs **entirely in your browser**. When you "upload" an image, it is
+                processed locally.
+            </p>
+            <p>
+                <strong>No image data is ever sent to a server.</strong> There is no backend recording your photos,
+                no tracking cookies analyzing your content, and no cloud-based processing. Everything happens
+                locally in your browser's RAM and is immediately cleared when you close the tab.
+            </p>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 UPF Project. Built with ❤️ for the Open Web.
+        </div>
+    </div>
+</body>
+
+</html>

@@ -328,7 +328,7 @@
     </div>
 
     <script type="module" src="newjpeg.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/heic-to@1.4.2/dist/iife/heic-to.min.js"></script>
     <script>
         const fileInput = document.getElementById('fileInput');
         const dropZone = document.getElementById('dropZone');
@@ -375,16 +375,19 @@
 
             let targetFile = file;
             if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
+                console.log("HEIC file detected, starting conversion via heic-to...");
                 try {
-                    const convertedBlob = await heic2any({
+                    // heic-to API: HeicTo({ blob, type, quality })
+                    const convertedBlob = await HeicTo({
                         blob: file,
-                        toType: 'image/jpeg',
+                        type: 'image/jpeg',
                         quality: 0.8
                     });
                     targetFile = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+                    console.log("HEIC conversion successful", targetFile.size, "bytes");
                 } catch (e) {
                     console.error("HEIC Conversion failed:", e);
-                    alert("HEIC conversion failed. Please try a different image.");
+                    alert("HEIC conversion failed: " + (e.message || "The file might be incompatible or corrupted."));
                     resetExport();
                     return;
                 }

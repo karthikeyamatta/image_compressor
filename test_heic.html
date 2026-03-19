@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/heic-to@1.4.2/dist/iife/heic-to.min.js"></script>
+</head>
+<body>
+    <script>
+        console.log("HeicTo type:", typeof HeicTo);
+        console.log("HeicTo properties:", Object.keys(HeicTo || {}));
+        if (typeof HeicTo === 'function') {
+            console.log("HeicTo is a function!");
+        } else if (HeicTo && typeof HeicTo.heicTo === 'function') {
+            console.log("HeicTo.heicTo is a function!");
+        } else {
+            console.log("None of them are functions.");
+        }
+    </script>
+</body>
+</html>

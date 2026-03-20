@@ -5,12 +5,15 @@ export function decode_upf_to_rgba(upf_data: Uint8Array): Uint8Array;
 
 export function encode_image_locally(raw_rgba: Uint8Array, width: number, height: number): Uint8Array;
 
+export function process_upf_hybrid(data: Uint8Array, width: number, height: number): void;
+
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
 
 export interface InitOutput {
     readonly memory: WebAssembly.Memory;
     readonly encode_image_locally: (a: number, b: number, c: number, d: number) => [number, number];
     readonly decode_upf_to_rgba: (a: number, b: number) => [number, number];
+    readonly process_upf_hybrid: (a: number, b: number, c: any, d: number, e: number) => void;
     readonly __wbindgen_externrefs: WebAssembly.Table;
     readonly __wbindgen_malloc: (a: number, b: number) => number;
     readonly __wbindgen_free: (a: number, b: number, c: number) => void;

@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPF Image Compressor</title>
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' https://cdn.jsdelivr.net; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.jsdelivr.net blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' blob: data:; connect-src 'self' blob: https://cdn.jsdelivr.net;">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
+<!doctypehtml><html lang="en"><meta charset="UTF-8"><meta name="viewport"content="width=device-width,initial-scale=1"><title>UPF Image Compressor</title><meta http-equiv="Content-Security-Policy"content="default-src 'self' https://cdn.jsdelivr.net; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.jsdelivr.net blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' blob: data:; connect-src 'self' blob: https://cdn.jsdelivr.net;"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap"rel="stylesheet"><style>:root {
             --bg-color: #0c0c0e;
             --card-bg: #16161a;
             --accent: #6366f1;
@@ -268,85 +257,61 @@
 
         nav a:hover {
             color: var(--accent);
-        }
-    </style>
-</head>
-
-<body>
-    <nav>
-        <a href="index.html" style="color: var(--accent)">Compressor</a>
-        <a href="about.html">About & Privacy</a>
-    </nav>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="container">
-
-
-        <div class="drop-zone" id="dropZone">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 20px">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="17 8 12 3 7 8"></polyline>
-                <line x1="12" y1="3" x2="12" y2="15"></line>
-            </svg>
-            <h3>Drop your high-fidelity image here</h3>
-            <p>JPG, PNG, WebP, or HEIC. Automatic Compression for 10MB+ photography.</p>
-            <input type="file" id="fileInput" class="hidden-input" accept="image/*,.heic,.heif">
-        </div>
-
-        <div class="status-container" id="status">
-            <div id="processing">
-                <span class="loader"></span>
-                <p style="margin-top: 1rem;">Compressing the Image...</p>
-            </div>
-
-            <div id="results" style="display: none;">
-                <div class="preview-container">
-                    <canvas id="export-canvas"></canvas>
-                </div>
-
-                <div class="metrics">
-                    <div class="metric-card">
-                        <span class="metric-label">Original</span>
-                        <span class="metric-value" id="orig-size">0 KB</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-label">Optimized Size</span>
-                        <span class="metric-value" id="upf-size">0 KB</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-label">Reduction</span>
-                        <span class="metric-value" id="reduction">0%</span>
-                    </div>
-                </div>
-                <div class="success-banner" id="success-msg">✅ Image is Ready!</div>
-                <a id="download-trigger" class="download-btn" href="#">DOWNLOAD THE IMAGE</a>
-                <br>
-                <button class="reset-btn" onclick="resetExport()">Compress Another Image</button>
-            </div>
-        </div>
-    </div>
-
-    <script type="module" src="newjpeg.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/heic-to@1.4.2/dist/iife/heic-to.min.js"></script>
-    <script>
-        const fileInput = document.getElementById('fileInput');
+        }</style><nav><a href="index.html"style="color: var(--accent)">Compressor</a> <a href="about.html">About & Privacy</a></nav><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="container"><div class="drop-zone"id="dropZone"><svg width="48"height="48"viewBox="0 0 24 24"fill="none"stroke="var(--accent)"stroke-width="1.5"stroke-linecap="round"stroke-linejoin="round"style="margin-bottom: 20px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12"y1="3"x2="12"y2="15"></line></svg><h3>Drop your high-fidelity images here</h3><p>Select up to 20 files at once (JPG, PNG, WebP, or HEIC).<p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.6;">Privacy-first: All optimization happens locally in your browser.</p><input type="file"id="fileInput"class="hidden-input"accept="image/*,.heic,.heif"multiple="multiple"></div><div class="status-container"id="status"><div id="processing"><span class="loader"></span><p style="margin-top: 1rem;"id="processing-text">Compressing the Images...<div id="batch-progress"style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">Processed: <span id="processed-count">0</span> / <span id="total-count">0</span></div></div><div id="results"style="display: none;"><div id="results-list"style="display: flex; flex-direction: column; gap: 1.5rem; width: 100%;"></div><div id="batch-actions"style="display: none; text-align: center; margin-top: 2rem;"><button id="download-all-btn"class="download-btn"style="background: #6366f1; width: 100%; max-width: 400px;">DOWNLOAD ALL AS ZIP</button><p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">Combine all optimized images into one archive</div><div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);"><button class="reset-btn"onclick="resetExport()">Compress More Images</button></div></div></div></div><script type="module"src="newjpeg.js"></script><script src="https://cdn.jsdelivr.net/npm/heic-to@1.4.2/dist/iife/heic-to.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script><script>const fileInput = document.getElementById('fileInput');
         const dropZone = document.getElementById('dropZone');
         const status = document.getElementById('status');
         const processing = document.getElementById('processing');
         const results = document.getElementById('results');
-        const origSizeEl = document.getElementById('orig-size');
-        const upfSizeEl = document.getElementById('upf-size');
-        const reductionEl = document.getElementById('reduction');
-        const successMsg = document.getElementById('success-msg');
-        const downloadTrigger = document.getElementById('download-trigger');
-        const exportCanvas = document.getElementById('export-canvas');
+        const resultsList = document.getElementById('results-list');
+        const processedCountEl = document.getElementById('processed-count');
+        const totalCountEl = document.getElementById('total-count');
+        const batchActions = document.getElementById('batch-actions');
+        const downloadAllBtn = document.getElementById('download-all-btn');
 
-        let originalFile = null;
+        // --- Architectural Decisions ---
+        const CONCURRENCY_LIMIT = 3;
+        const MAX_BATCH_SIZE = 20;
+        const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
+        const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif'];
+
+        let processedCount = 0;
+        let totalCount = 0;
+        let processedBlobs = []; // Array to store {blob, filename} for ZIP
+
+        /**
+         * Simple Asynchronous Queue to manage concurrency
+         */
+        class AsyncQueue {
+            constructor(concurrency) {
+                this.concurrency = concurrency;
+                this.running = 0;
+                this.queue = [];
+            }
+
+            async push(task) {
+                this.queue.push(task);
+                this.next();
+            }
+
+            async next() {
+                if (this.running >= this.concurrency || this.queue.length === 0) return;
+
+                this.running++;
+                const task = this.queue.shift();
+                try {
+                    await task();
+                } finally {
+                    this.running--;
+                    this.next();
+                }
+            }
+        }
+
+        const taskQueue = new AsyncQueue(CONCURRENCY_LIMIT);
 
         fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) handleFile(file);
+            const files = Array.from(e.target.files);
+            if (files.length > 0) handleFiles(files);
         });
 
         dropZone.onclick = () => fileInput.click();
@@ -363,73 +328,187 @@
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropZone.classList.remove('drag-over');
-            const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
+            const files = Array.from(e.dataTransfer.files);
+            if (files.length > 0) handleFiles(files);
         });
 
-        async function handleFile(file) {
-            originalFile = file;
+        async function handleFiles(files) {
+            // Validation: Max Batch Size
+            if (files.length > MAX_BATCH_SIZE) {
+                alert(`Batch too large. Please upload max ${MAX_BATCH_SIZE} files.`);
+                files = files.slice(0, MAX_BATCH_SIZE);
+            }
+
             dropZone.style.display = 'none';
             status.style.display = 'block';
-            origSizeEl.textContent = `${(file.size / 1024).toFixed(1)} KB`;
+            processing.style.display = 'block';
+            
+            totalCount = files.length;
+            processedCount = 0;
+            processedBlobs = [];
+            updateBatchProgress();
 
+            for (const file of files) {
+                // Validation: File Type & Size
+                const isHeic = file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif');
+                if (!ALLOWED_TYPES.includes(file.type) && !isHeic) {
+                    console.warn(`Skipping ${file.name}: Unsupported type ${file.type}`);
+                    totalCount--;
+                    updateBatchProgress();
+                    continue;
+                }
+                if (file.size > MAX_FILE_SIZE) {
+                    console.warn(`Skipping ${file.name}: Too large (${(file.size / 1024 / 1024).toFixed(1)}MB)`);
+                    totalCount--;
+                    updateBatchProgress();
+                    continue;
+                }
+
+                taskQueue.push(() => processOneFile(file));
+            }
+
+            if (totalCount === 0) {
+                alert("No valid images selected.");
+                resetExport();
+            }
+        }
+
+        function updateBatchProgress() {
+            processedCountEl.textContent = processedCount;
+            totalCountEl.textContent = totalCount;
+            
+            if (processedCount === totalCount && totalCount > 0) {
+                processing.style.display = 'none';
+                results.style.display = 'block';
+                
+                // Show ZIP option if multiple files
+                if (totalCount > 1) {
+                    batchActions.style.display = 'block';
+                }
+            }
+        }
+
+        async function processOneFile(file) {
             let targetFile = file;
-            if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
-                console.log("HEIC file detected, starting conversion via heic-to...");
-                try {
-                    // heic-to API: HeicTo({ blob, type, quality })
+            const originalName = file.name;
+
+            try {
+                // 1. HEIC Conversion (if needed)
+                if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif')) {
                     const convertedBlob = await HeicTo({
                         blob: file,
                         type: 'image/jpeg',
                         quality: 0.8
                     });
                     targetFile = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
-                    console.log("HEIC conversion successful");
-                } catch (e) {
-                    console.error("HEIC Conversion failed:", e);
-                    alert("HEIC conversion failed: " + (e.message || "The file might be incompatible or corrupted."));
-                    resetExport();
-                    return;
                 }
-            }
 
-            // Call the WASM processor
-            // window.processUserUpload is exposed in newjpeg.js
-            if (window.processUserUpload) {
-                window.processUserUpload(targetFile, originalFile.name);
+                // 2. Execute WASM Compression
+                await new Promise((resolve) => {
+                    const originalOnComplete = window.onExportComplete;
+                    
+                    window.onExportComplete = (upfSizeBytes, blobUrl, finalFilename) => {
+                        createResultItem(originalName, file.size, upfSizeBytes, blobUrl, finalFilename);
+                        
+                        // Store blob for ZIP (fetch it from blobUrl)
+                        fetch(blobUrl).then(res => res.blob()).then(blob => {
+                            processedBlobs.push({ blob, filename: finalFilename });
+                            processedCount++;
+                            updateBatchProgress();
+                            window.onExportComplete = originalOnComplete;
+                            resolve();
+                        });
+                    };
+
+                    if (window.processUserUpload) {
+                        window.processUserUpload(targetFile, originalName);
+                    } else {
+                        console.error("processUserUpload not found!");
+                        resolve();
+                    }
+                });
+
+            } catch (err) {
+                console.error(`Error processing ${originalName}:`, err);
+                processedCount++;
+                updateBatchProgress();
             }
         }
 
-        window.onExportComplete = (upfSizeBytes, blobUrl, filename) => {
-            processing.style.display = 'none';
-            results.style.display = 'block';
-            upfSizeEl.textContent = `${(upfSizeBytes / 1024).toFixed(1)} KB`;
+        function createResultItem(originalName, origSize, upfSize, blobUrl, finalFilename) {
+            const reduction = ((1 - upfSize / origSize) * 100).toFixed(1);
+            
+            const item = document.createElement('div');
+            item.className = 'section'; 
+            item.style.padding = '20px';
+            item.style.marginBottom = '0';
+            item.style.background = 'rgba(255, 255, 255, 0.05)';
+            
+            item.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h4 style="color: var(--accent); font-size: 1.1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;">
+                        ${originalName}
+                        <span style="display: block; font-size: 0.8rem; color: var(--text-secondary); font-weight: normal;">${(origSize/1024).toFixed(1)} KB &rarr; ${(upfSize/1024).toFixed(1)} KB</span>
+                    </h4>
+                    <span style="color: var(--success); font-weight: 600; font-size: 1.2rem;">-${reduction}%</span>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <a href="${blobUrl}" download="${finalFilename}" class="download-btn" style="margin-top: 0; padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+                        DOWNLOAD
+                    </a>
+                </div>
+            `;
+            
+            resultsList.appendChild(item);
+        }
 
-            // Calculate reduction
-            if (originalFile) {
-                const reduction = ((1 - upfSizeBytes / originalFile.size) * 100).toFixed(1);
-                reductionEl.textContent = `${reduction}%`;
+        /**
+         * Handle ZIP Generation
+         */
+        downloadAllBtn.onclick = async () => {
+            if (processedBlobs.length === 0) return;
+            
+            downloadAllBtn.disabled = true;
+            downloadAllBtn.textContent = 'CREATING ZIP ARCHIVE...';
+            
+            try {
+                const zip = new JSZip();
+                processedBlobs.forEach(item => {
+                    zip.file(item.filename, item.blob);
+                });
+                
+                const content = await zip.generateAsync({ type: 'blob' });
+                const zipUrl = URL.createObjectURL(content);
+                
+                const link = document.createElement('a');
+                link.href = zipUrl;
+                link.download = `optimized_images_${Date.now()}.zip`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Track cleanup (optional)
+                setTimeout(() => URL.revokeObjectURL(zipUrl), 60000);
+            } catch (err) {
+                console.error("ZIP Generation failed:", err);
+                alert("Failed to create ZIP archive.");
+            } finally {
+                downloadAllBtn.disabled = false;
+                downloadAllBtn.textContent = 'DOWNLOAD ALL AS ZIP';
             }
-
-            successMsg.style.display = 'block';
-
-            // Set up download button
-            downloadTrigger.href = blobUrl;
-            downloadTrigger.download = filename;
         };
 
         function resetExport() {
             results.style.display = 'none';
             status.style.display = 'none';
             processing.style.display = 'block';
-            successMsg.style.display = 'none';
             dropZone.style.display = 'block';
+            batchActions.style.display = 'none';
+            resultsList.innerHTML = '';
             fileInput.value = '';
-            originalFile = null;
+            processedCount = 0;
+            totalCount = 0;
+            processedBlobs = [];
         }
 
-        window.resetExport = resetExport;
-    </script>
-</body>
-
-</html>
+        window.resetExport = resetExport;</script>

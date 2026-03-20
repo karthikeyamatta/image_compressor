@@ -28,9 +28,23 @@ export function encode_image_locally(raw_rgba, width, height) {
     return v2;
 }
 
+/**
+ * @param {Uint8Array} data
+ * @param {number} width
+ * @param {number} height
+ */
+export function process_upf_hybrid(data, width, height) {
+    var ptr0 = passArray8ToWasm0(data, wasm.__wbindgen_malloc);
+    var len0 = WASM_VECTOR_LEN;
+    wasm.process_upf_hybrid(ptr0, len0, data, width, height);
+}
+
 function __wbg_get_imports() {
     const import0 = {
         __proto__: null,
+        __wbg___wbindgen_copy_to_typed_array_d2f20acdab8e0740: function(arg0, arg1, arg2) {
+            new Uint8Array(arg2.buffer, arg2.byteOffset, arg2.byteLength).set(getArrayU8FromWasm0(arg0, arg1));
+        },
         __wbindgen_init_externref_table: function() {
             const table = wasm.__wbindgen_externrefs;
             const offset = table.grow(4);

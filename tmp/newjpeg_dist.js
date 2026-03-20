@@ -1,4 +1,4 @@
-import init, { encode_image_locally, decode_upf_to_rgba } from './pkg/upf_wasm_encoder.js';
+import init, { encode_image_locally, decode_upf_to_rgba } from './pkg/upf_wasm_encoder.min.js';
 
 async function processUserUpload(file, fileName) {
     // 1. Boot the Rust Engine
